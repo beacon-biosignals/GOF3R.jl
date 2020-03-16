@@ -10,20 +10,19 @@ else #macos
 end
 
 function s3stream(bucket, path)
-    endpoint = "s3.us-east-2.amazonaws.com"
+    endpoint = AWS_ENDPOINT[]
     return open(`$gof3r get -b $(bucket) -k $(path) --endpoint=$(endpoint)`)
 end
 
 function s3getfile(bucket, path, outfile)
-    endpoint = "s3.us-east-2.amazonaws.com"
+    endpoint = AWS_ENDPOINT[]
     open(`$gof3r get -b $(bucket) -k $(path) --endpoint=$(endpoint)`) do io
         write(outfile, io)
     end
 end
 
 function s3upload(bucket, file, key)
-    ENV["AWS_REGION"] = "us-east-2"
-    endpoint = "s3.us-east-2.amazonaws.com"
+    endpoint = AWS_ENDPOINT[]
     run(`$gof3r cp $(file) s3://$(bucket)/$(key) --endpoint=$(endpoint)`)
 end
 
@@ -39,6 +38,14 @@ function s3stream(f, bucket, path)
     end
     success(stream) || pipeline_error(stream)
     return ret
+end
+
+const AWS_ENDPOINT = Ref{String}("")
+
+function __init__()
+    # make sure we have a region set
+    get!(ENV, "AWS_REGION", "us-east-2")
+    AWS_ENDPOINT[] = get!(ENV, "AWS_ENDPOINT", "s3.us-east-2.amazonaws.com")
 end
 
 
