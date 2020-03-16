@@ -8,7 +8,7 @@ os = "linux"
 
 [[s3gof3r]]
 arch = "x86_64"
-git-tree-sha1 = "5a34ce1469719c26c82b8d838fb8fe110dff6593"
+git-tree-sha1 = "947b79ddab5b28e81a0cb14affe49ee200ee86e1"
 os = "macos"
     [[s3gof3r.download]]
     sha256 = "85ace61bd58cf57034e748af22b8a3c9ca82ed194da3a4c1c646989d78ee2947"
