@@ -16,7 +16,8 @@ os = "macos"
 
 [[s3gof3r]]
 arch = "x86_64"
-git-tree-sha1 = "5a34ce1469719c26c82b8d838fb8fe110dff6593"
+git-tree-sha1 = "947b79ddab5b28e81a0cb14affe49ee200ee86e1"
 os = "windows"
     [[s3gof3r.download]]
+    sha256 = "9c7002c39accec147681dcb1bd51d75579463c7be4c5e7b3e0f0218f717b45e3"
     url = "https://github.com/rlmcpherson/s3gof3r/releases/download/v0.5.0/gof3r.exe"
