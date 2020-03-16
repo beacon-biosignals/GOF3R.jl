@@ -44,8 +44,10 @@ const AWS_ENDPOINT = Ref{String}("")
 
 function __init__()
     # make sure we have a region set
-    get!(ENV, "AWS_REGION", "us-east-2")
-    AWS_ENDPOINT[] = get!(ENV, "AWS_ENDPOINT", "s3.us-east-2.amazonaws.com")
+    if !haskey(ENV, "AWS_REGION")
+        ENV["AWS_REGION"] = "us-east-2"
+    end
+    AWS_ENDPOINT[] = get(ENV, "AWS_ENDPOINT", "s3.us-east-2.amazonaws.com")
 end
 
 
