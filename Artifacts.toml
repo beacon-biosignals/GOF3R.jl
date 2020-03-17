@@ -19,5 +19,5 @@ arch = "x86_64"
 git-tree-sha1 = "947b79ddab5b28e81a0cb14affe49ee200ee86e1"
 os = "windows"
     [[s3gof3r.download]]
-    sha256 = "9c7002c39accec147681dcb1bd51d75579463c7be4c5e7b3e0f0218f717b45e3"
-    url = "https://github.com/rlmcpherson/s3gof3r/releases/download/v0.5.0/gof3r.exe"
+    sha256 = "8ca4772d4f541a7f7cc8f5730fc1609114bd019e99fce6df3cb14510c90a712f"
+    url = "https://github.com/beacon-biosignals/GOF3R.jl/releases/download/v0.0.1/gof3r_win64.tar.gz"
