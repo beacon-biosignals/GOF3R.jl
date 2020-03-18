@@ -27,12 +27,6 @@ function s3upload(bucket, file, key)
     end
 end
 
-function version()
-    s3gof3r_jll.gof3r() do exe
-        run(`$exe --version`)
-    end
-end
-
 function s3stream(f, bucket, path)
     stream = s3stream(bucket, path)
     ret = try
