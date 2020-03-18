@@ -27,7 +27,6 @@ function s3getfile(bucket, path, outfile)
 
 end
 
-
 """
   s3upload(bucket, file, key)
 Uploads `file` to `bucket:key`
@@ -57,7 +56,6 @@ function s3stream(f, bucket, path)
     return ret
 end
 
-
 const AWS_ENDPOINT = Ref{String}("")
 
 function __init__()
@@ -67,6 +65,5 @@ function __init__()
     end
     AWS_ENDPOINT[] = get(ENV, "AWS_ENDPOINT", "s3.us-east-2.amazonaws.com")
 end
-
 
 end # module
