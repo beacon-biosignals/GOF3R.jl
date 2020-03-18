@@ -2,7 +2,10 @@ module GOF3R
 
 using s3gof3r_jll
 
-
+"""
+  s3stream(bucket, path)
+Returns an io streaming path from bucket
+"""
 function s3stream(bucket, path)
     endpoint = AWS_ENDPOINT[]
     s3gof3r_jll.gof3r() do exe
@@ -10,6 +13,10 @@ function s3stream(bucket, path)
     end
 end
 
+"""
+  s3stream(bucket, path)
+Writes file from `ucket:path`to `utfile`
+"""
 function s3getfile(bucket, path, outfile)
     endpoint = AWS_ENDPOINT[]
     s3gof3r_jll.gof3r() do exe
@@ -20,6 +27,11 @@ function s3getfile(bucket, path, outfile)
 
 end
 
+
+"""
+  s3upload(bucket, file, key)
+Uploads `file` to `bucket:key`
+"""
 function s3upload(bucket, file, key)
     endpoint = AWS_ENDPOINT[]
     s3gof3r_jll.gof3r() do exe
@@ -27,6 +39,10 @@ function s3upload(bucket, file, key)
     end
 end
 
+"""
+  s3stream(f, bucket, path)
+calls f(s3stream(bucket, path)) and makes sure everything gets closed correctly + error handling.
+"""
 function s3stream(f, bucket, path)
     stream = s3stream(bucket, path)
     ret = try
