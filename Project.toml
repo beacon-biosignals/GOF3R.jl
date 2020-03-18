@@ -4,10 +4,11 @@ authors = ["Beacon Biosignals"]
 version = "0.1.0"
 
 [deps]
-Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+s3gof3r_jll = "9164d88c-a457-5bb2-a3b9-d66c3bc9d5df"
 
 [compat]
 julia = "1"
+s3gof3r_jll = "0.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
