@@ -2,9 +2,12 @@ module GOF3R
 
 using s3gof3r_jll
 
+export s3stream, s3getfile, s3upload
+
 """
-  s3stream(bucket, path)
-Returns an io streaming path from bucket
+    s3stream(bucket, path)
+
+Return an `IO` object streaming `path` from `bucket`.
 """
 function s3stream(bucket, path)
     endpoint = AWS_ENDPOINT[]
@@ -14,8 +17,9 @@ function s3stream(bucket, path)
 end
 
 """
-  s3stream(bucket, path)
-Writes file from `ucket:path`to `utfile`
+    s3getfile(bucket, path, outfile)
+
+Write the file at `bucket:path` to `outfile`.
 """
 function s3getfile(bucket, path, outfile)
     endpoint = AWS_ENDPOINT[]
@@ -24,12 +28,12 @@ function s3getfile(bucket, path, outfile)
             write(outfile, io)
         end
     end
-
 end
 
 """
-  s3upload(bucket, file, key)
-Uploads `file` to `bucket:key`
+    s3upload(bucket, file, key)
+
+Upload `file` to `bucket:key`.
 """
 function s3upload(bucket, file, key)
     endpoint = AWS_ENDPOINT[]
@@ -39,8 +43,10 @@ function s3upload(bucket, file, key)
 end
 
 """
-  s3stream(f, bucket, path)
-calls f(s3stream(bucket, path)) and makes sure everything gets closed correctly + error handling.
+    s3stream(f, bucket, path)
+
+Call `f(s3stream(bucket, path))`, ensuring that the stream is closed properly once `f`
+has finished executing, including in the case of errors.
 """
 function s3stream(f, bucket, path)
     stream = s3stream(bucket, path)
@@ -63,7 +69,7 @@ function __init__()
     if !haskey(ENV, "AWS_REGION")
         ENV["AWS_REGION"] = "us-east-2"
     end
-    AWS_ENDPOINT[] = get(ENV, "AWS_ENDPOINT", "s3.us-east-2.amazonaws.com")
+    AWS_ENDPOINT[] = get(ENV, "AWS_ENDPOINT", "s3.$(ENV["AWS_REGION"]).amazonaws.com")
 end
 
 end # module
