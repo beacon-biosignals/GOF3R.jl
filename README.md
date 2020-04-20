@@ -57,8 +57,8 @@ credpath = joinpath(awspath, "credentials")
 # THIS WILL OVERWITE ANY EXISTING CRENTIAL FILE
 write(credpath, """
 [main]
-aws_access_key_id=*********
-aws_secret_access_key=********
+aws_access_key_id=$(ENV["AWS_ACCESS_KEY_ID"])
+aws_secret_access_key=$(ENV["AWS_SECRET_ACCESS_KEY"])
 """)
 
 code = 000000 # your valid code from your 2 factor APP
