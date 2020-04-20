@@ -48,31 +48,12 @@ A little script doing 2 factor auth for you with aws-cli:
 
 ```julia
 using JSON3
-awspath = joinpath(homedir(), ".aws")
-isdir(awspath) || mkdir(awspath)
-credpath = joinpath(awspath, "credentials")
-
-# Write initial user for connection without mfa
-# DONT EXECUTE THIS IF YOU ALREADY HAVE A CREDENTIAL FILE!!!!!
-# THIS WILL OVERWITE ANY EXISTING CRENTIAL FILE
-write(credpath, """
-[main]
-aws_access_key_id=$(ENV["AWS_ACCESS_KEY_ID"])
-aws_secret_access_key=$(ENV["AWS_SECRET_ACCESS_KEY"])
-""")
 
 code = 000000 # your valid code from your 2 factor APP
 userid = 0000000000 # your user id from AWS
 username = "username" # your username
 json = String(read(`aws sts get-session-token --serial-number arn:aws:iam::$(userid):mfa/$(username) --token-code $code --profile=main`))
 creds = JSON3.read(json).Credentials
-
-write(credpath, """
-[default]
-aws_access_key_id=$(creds.AccessKeyId)
-aws_secret_access_key=$(creds.SecretAccessKey)
-aws_session_token=$(creds.SessionToken)
-""")
 
 ENV["AWS_ACCESS_KEY_ID"] = creds.AccessKeyId
 ENV["AWS_SECRET_ACCESS_KEY"] = creds.SecretAccessKey
