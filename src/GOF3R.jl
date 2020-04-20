@@ -58,7 +58,7 @@ function s3stream(f, bucket, path)
     finally
         close(stream.in)
     end
-    success(stream) || pipeline_error(stream)
+    success(stream) || Base.pipeline_error(stream)
     return ret
 end
 
